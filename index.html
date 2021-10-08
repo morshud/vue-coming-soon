@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>PavilionCMS Coming Soon</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main class="grey lighten-3">
+        <v-container>
+          <div class="d-flex justify-center mt-16 pt-16 mb-16 pb-16">
+            <v-row class="text-center">
+              <v-col cols="2">
+
+              </v-col>
+              <v-col color="white" cols="8" class="justify-center">
+                <v-row>
+                  <v-col>
+                    <div class="p-countdown">
+                      <h2 class="primary--text">{{days}}</h2>
+                      <h2 class="p-grey-darken">Days</h2>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <div class="p-countdown">
+                      <h2 class="primary--text">{{hours}}</h2>
+                      <h2 class="p-grey-darken">Hours</h2>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <div class="p-countdown">
+                      <h2 class="primary--text">{{minutes}}</h2>
+                      <h2 class="p-grey-darken">Minutes</h2>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <div class="p-countdown">
+                      <h2 class="primary--text">{{seconds}}</h2>
+                      <h2 class="p-grey-darken">Seconds</h2>
+                    </div>
+                  </v-col>
+                </v-row>
+                <div class="justfy-center mt-16">
+                  <h2 class="p-head-title"><span class="primary--text">PavilionCMS</span>, coming soon</h2>
+                  <p class="p-head-subtitle mt-5">
+                    We love to create dependable content solotions for companies
+                    of all sizes and any industry. Our goal is to improve accuracy and
+                    efficiency to reduce operational costs.
+                  </p>
+                </div>
+                <div class="mt-16">
+                  <p class="caption font-weight-medium mb-n1">
+                    Join our waiting list
+                  </p>
+                  <v-row class="justify-center">
+                    <v-col cols="8">
+                      <input class="p-input" placeholder="Enter your email address" type="text" id="">
+                    </v-col>
+                    <v-col cols="2">
+                      <v-btn class="p-btn">
+                        search
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-col>
+              <v-col cols="2"></v-col>
+            </v-row>
+            <div id="clock"></div>
+          </div>
+
+        </v-container>
+        <v-divider></v-divider>
+        <v-container>
+          <div class="">
+            <v-row>
+              <v-col>
+                <span>&copy; First Pavilion Tech</span>
+              </v-col>
+              <v-col>
+                <div class="d-flex justify-end">
+                  <a href="#" class="mr-3">
+                    <v-icon small>
+                      mdi-instagram
+                    </v-icon>
+                  </a>
+                  <a href="#" class="mr-3">
+                    <v-icon small>
+                      mdi-twitter
+                    </v-icon>
+                  </a>
+                  <a href="#" class="mr-3">
+                    <v-icon small>
+                      mdi-facebook
+                    </v-icon>
+                  </a>
+                  <a href="#" class="mr-3">
+                    <v-icon small>
+                      mdi-linkedin
+                    </v-icon>
+                  </a>
+                  <a href="#" class="mr-3">
+                    <v-icon small>
+                      mdi-youtube
+                    </v-icon>
+                  </a>
+
+                </div>
+              </v-col>
+            </v-row>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          months: 0,
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        }
+      },
+      created() {
+        this.getCountdown()
+      },
+      methods: {
+        getCountdown() {
+          var endCount = moment().add(100, 'days').format("YYYY-MM-DDT11:00:00Z");
+
+          // make it a moment object End
+          var event = moment(endCount);
+
+          // get current time/date
+          var current = moment();
+
+          // get difference between event and current
+          var diffTime = event.diff(current);
+
+          // let moment.js make the duration out of the timestamp
+          var duration = moment.duration(diffTime, 'milliseconds', true);
+
+          // Interval
+          var interval = 1000
+          setInterval(() => {
+            duration = moment.duration(duration - interval, 'milliseconds');
+            this.days = parseInt(duration.asDays())
+            this.hours = duration.hours()
+            this.minutes = duration.minutes()
+            this.seconds = duration.seconds()
+          }, interval);
+        }
+      }
+    })
+  </script>
+
+  <style>
+    input.p-input {
+      background: #fff;
+      width: 100%;
+      height: 33px;
+      text-align: center;
+      color: #1976d2;
+    }
+
+    input.p-input::placeholder {
+      color: #7e7f80;
+      font-size: 11px;
+    }
+
+    button.p-btn.v-btn.v-btn--has-bg {
+      background: #237cd5;
+      ;
+      color: #fff;
+      font-size: 12px;
+      text-transform: capitalize;
+      height: 33px;
+      width: 100%;
+    }
+
+    .p-countdown {
+      background: #fff;
+      padding: 27%;
+      border-radius: 100% !important;
+    }
+
+    .p-grey-darken {
+      color: #5b5b5b !important;
+    }
+
+    h2.p-head-title {
+      font-size: 3rem;
+    }
+
+    p.p-head-subtitle {
+      font-size: 22px;
+      font-weight: 300;
+    }
+  </style>
+</body>
+
+</html>
